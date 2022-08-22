@@ -1,0 +1,28 @@
+$header: "header";
+$search: "search";
+$now-playing: "now-playing";
+
+.#{$header} {
+  background-color: rgb(68, 65, 65);
+}
+.#{$search} {
+  display: contents;
+  &-results{
+    position: absolute;
+    left: 43%;
+    margin-top: 10px;
+  }
+  &-results__not-found{
+    position: absolute;
+    left: 43%;
+    margin-top: 10px;
+  }
+
+}
+.#{$now-playing} {
+  &__tilte{
+    position: absolute;
+    left: 43%;
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="header" fxLayout="column">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand">ACRVV Filmes</a>
+        <form class="d-flex" [formGroup]="searchForm">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Pesquisar filme..."
+            aria-label="Search"
+            formControlName="search"
+          />
+        </form>
+      </div>
+    </nav>
+    <div  *ngIf="filteredOptions$ | async as movieSearch">
+      <ng-container *ngIf="isSeeking">
+        <ng-container *ngIf="movieSearch.length > 0; else elseTitle">
+          <h2 class="search-results">Resultado da busca</h2>
+          <div class="movie" fxLayout="row wrap" fxLayoutAlign="start stretch">
+            <ng-container
+              *ngIf="!isLoading && movieSearch.length; else elseTemplate"
+            >
+              <app-grid-movie [moviesList]="movieSearch"></app-grid-movie>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <app-grid-skeleton></app-grid-skeleton>
+            </ng-template>
+          </div>
+        </ng-container>
+        <ng-template #elseTitle>
+          <h3 class="search-results__not-found">
+            Nenhum resultado encontrado.
+          </h3>
+        </ng-template>
+      </ng-container>
+    </div>
+    <div class="now-playing">
+      <ng-container *ngIf="!isSeeking">
+        <h2 class="now-playing__tilte">Filmes em Cartaz</h2>
+        <ng-container *ngIf="!isLoading && movies.length; else elseTemplate">
+          <app-grid-movie [moviesList]="movies"></app-grid-movie>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <app-grid-skeleton></app-grid-skeleton>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</div>

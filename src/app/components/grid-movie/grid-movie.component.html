@@ -1,0 +1,64 @@
+<div class="movie" fxLayout="row wrap" fxLayoutAlign="start stretch">
+  <div
+    class="movie__content"
+    fxFlex="18"
+    fxFlex.md="22"
+    fxFlex.sm="45"
+    fxFlex.xs="100"
+    fxLayout="column"
+    *ngFor="let movie of moviesList; let index = index"
+  >
+    <img
+      mat-card-image
+      class="movie__content-image"
+      [src]="baseUrlImage + movie.poster_path"
+      [alt]="'Imagem ' + movie.title"
+      style="z-index: 2"
+      (mouseover)="indexHover = index"
+      (mouseout)="indexHover = -1"
+    />
+    <img
+      mat-card-image
+      class="movie__content-blur"
+      *ngIf="indexHover === index"
+      [src]="baseUrlImage + movie.poster_path"
+    />
+    <div class="card bg-dark">
+      <div class="card-body">
+        <p class="card-text">
+          <span id="star">★</span>{{ movie.vote_average }}
+        </p>
+        <p class="card-text">{{ movie.title }}</p>
+        <p class="card-text">
+          Lançado em {{ movie.release_date | date: "dd MMMM yyyy":"":"pt-BR" }}
+        </p>
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          (click)="indexCard = index"
+        >
+          Sinopse
+        </button>
+        <div
+          class="card bg-dark"
+          *ngIf="indexCard === index"
+          style="margin-top: 5px;"
+        >
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              (click)="indexCard = -1"
+            ></button>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ movie.title }}</h3>
+            <p class="card-text">{{ movie.overview }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

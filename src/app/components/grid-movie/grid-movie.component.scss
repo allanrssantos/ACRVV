@@ -1,0 +1,92 @@
+$movie: "movie";
+
+.#{$movie} {
+  justify-content: center !important;
+  padding-top: 50px;
+  position: relative;
+
+  &__content {
+    position: relative;
+    margin: 0 10px;
+    height: 100%;
+
+    &-image {
+      z-index: 2;
+    }
+
+    &-blur {
+      filter: blur(12px);
+      z-index: 1;
+      top: 4px;
+      left: 4px;
+      width: 99%;
+      position: absolute;
+      box-shadow: 0px 1px 0px -1px rgb(0 0 0 / 25%),
+        0px 0px 0px 0px rgb(0 0 0 / 20%), 2px 15px 20px 0px rgb(71 56 137 / 40%);
+
+      &:hover {
+        transition: animation 1s;
+        animation: fadeOut 1s;
+      }
+
+      &:not(:hover) {
+        animation: fadeIn 1s;
+        transition: animation 1s;
+      }
+    }
+  }
+
+  img {
+    border: none;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+  }
+
+  div {
+    border: none;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 10px;
+  }
+
+  #star {
+    color: gold;
+    margin-right: 4px;
+  }
+
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
